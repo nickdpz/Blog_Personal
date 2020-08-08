@@ -4,11 +4,13 @@ const controller = require('./controller');
 const response = require('../../network/response');
 const passport = require('passport');
 
+const usersValidationHandler = require('../../utils/middleware/userValidationHandler');
 // JWT strategy
 require('../../utils/auth/jwt');
 
 router.post('/',
     passport.authenticate('jwt', { session: false }),
+    usersValidationHandler('create:post'),
     async (req, res) => {
         const user = req.user._id;
         const { slug, description, shortDescription, category, title } = req.body;
@@ -23,6 +25,7 @@ router.post('/',
 
 router.get('/',
     passport.authenticate('jwt', { session: false }),
+    usersValidationHandler('get:post'),
     async (req, res) => {
         const { user } = req.query;
         controller.getPost(user)
