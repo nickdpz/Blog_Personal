@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { loginUser } from '../actions';
-import '../styles/Login.css';
+import { Link } from 'react-router-dom';
+import './styles/Login.css';
 
 const Login = (props) => {
     const [form, setValues] = useState({
@@ -27,22 +28,32 @@ const Login = (props) => {
                 <section className='login__container'>
                     <h2>Inicia sesión</h2>
                     <form className='login__container--form' onSubmit={handleSubmit}>
-                        <input
-                            name='email'
-                            className='input'
-                            type='text'
-                            placeholder='Correo'
-                            onChange={handleInput}
-                        />
-                        <input
-                            name='password'
-                            className='input'
-                            type='password'
-                            placeholder='Contraseña'
-                            onChange={handleInput}
-                        />
-                        <button className='button' type='submit'>Iniciar sesión</button>
+                        <div className="form-group">
+                            <input
+                                name='email'
+                                className='form-control'
+                                type='text'
+                                placeholder='Correo'
+                                onChange={handleInput}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <input
+                                name='password'
+                                className='form-control'
+                                type='password'
+                                placeholder='Contraseña'
+                                onChange={handleInput}
+                            />
+                        </div>
+                        <button className='btn btn-primary' type='submit'>Iniciar sesión</button>
                     </form>
+                    <section className='login__container--register'>
+                        <p className='login__container--register'>
+                            No tienes ninguna cuenta
+                        </p>
+                        <Link to='/register'>Regístrate</Link>
+                    </section>
                 </section>
             </section>
         </>

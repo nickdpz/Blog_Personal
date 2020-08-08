@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
 import './styles/Home.css';
-import { connect } from 'react-redux';
-import ProductContainer from '../components/ProductContainer';
-import ProductItem from '../components/ProductItem';
 import Header from '../components/Header';
-import Filter from '../components/Filter'
 import Footer from '../components/Filter'
 import api from '../api'
 
 class Home extends Component {
     state = {
         count: 0,
-        loading: false,
-        error: false,
-        products: {}
     }
     fetchData = async () => {
         this.setState({ loading: true, error: null });
@@ -31,41 +24,17 @@ class Home extends Component {
     };
 
     componentDidMount() {
-        this.fetchData();
     }
 
     render() {
-        const { products } = this.state;
-        //const { products } = this.props;
         return (
             <>
                 <Header />
-                <div className="container-body">
-                    <Filter />
-                    <ProductContainer>
-                        {products.length > 0 && (
-                            <>
-                                {products.map((item) => (
-                                    <ProductItem
-                                        key={item._id}
-                                        {...item}
-                                        isList
-                                    />
-                                ))}
-                            </>
-                        )}
-                    </ProductContainer>
-                </div>
-                <Footer />
+                <h1>Hola</h1>
             </>
         );
     }
 
 };
 
-const mapStateToProps = (state) => {
-    return {
-        products: state.products,
-    };
-};
-export default connect(mapStateToProps, null)(Home);
+export default Home;

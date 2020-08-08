@@ -7,6 +7,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+#app{
+  height: 100vh;
+}
+
 body {
   font-family: 'Lato', 'Helvetica Neue', sans-serif;
   background-color: #F4F4F7;
@@ -31,20 +35,20 @@ a.link-unstyled:hover {
 
 .btn.btn-primary {
   color: #fff;
-  background-color: #ef4923;
-  border-color: #ef4923;
+  background-color: #032556;
+  border-color: #032556;
 }
 
 .btn.btn-primary:not(:disabled):not(.disabled):hover {
   color: #fff;
-  background-color: #992207;
-  border-color: #992207;
+  background-color: #09101b;
+  border-color: #09101b;
 }
 
 .btn.btn-primary:not(:disabled):not(.disabled):active {
   color: #fff;
-  background-color: #992207;
-  border-color: #992207;
+  background-color: #09101b;
+  border-color: #09101b;
 }
 
 .btn.btn-primary:not(:disabled):not(.disabled):focus {

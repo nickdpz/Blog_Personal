@@ -1,13 +1,11 @@
-import { phone } from "faker";
-
 const BASE_URL = 'http://localhost:8000';
+const base64 = require('base-64');
 
 async function callApi(endpoint, options = {}) {
   options.headers = {
+    ...options.headers,
     'Content-Type': 'application/json',
-    Accept: 'application/json',
   };
-
   const url = BASE_URL + endpoint;
   const response = await fetch(url, options);
   const data = await response.json();
@@ -15,22 +13,24 @@ async function callApi(endpoint, options = {}) {
 }
 
 const api = {
-  getProducts() {
-    return callApi(`/product/`);
-  },
-  getProduct(id) {
-    return callApi(`/product/${id}`);
-  },
-  postBuy(name,phone,email,product,count) {
-    return callApi('/buy/', {
+  createUser(data) {
+    const { name, phone, email, password } = data;
+    return callApi('/user/', {
       method: 'POST',
       body: JSON.stringify({
         name: name,
+        password: password,
         phone: phone,
-        email:email,
-        product:product,
-        productCount:count
+        email: email,
       })
+    })
+  },
+  singIn(data) {
+    const { email, password } = data;
+    const username = email;
+    return callApi('/auth/sign-in', {
+      method: 'POST',
+      headers: { 'Authorization': `Basic ${base64.encode(username + ":" + password)}` }
     })
   }
 };

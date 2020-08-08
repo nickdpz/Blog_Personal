@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Header = (props) => {
-  const { product } = props;
   return (
     <header className="">
-    <Link to={'/buy'} className="btn">
+    <Link to={'/post'} className="btn">
       <p className=''>carro</p>
     </Link>
     </header>
@@ -15,7 +14,7 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    product: state.product,
+    user: state.user,
   };
 };
 
