@@ -1,0 +1,6 @@
+.product-container {
+    display: grid;
+    grid-template: 250px/ 1fr 1fr 1fr 1fr;
+    grid-auto-rows: 1fr 1fr 1fr 1fr;
+    grid-gap: 5px 5px;
+}

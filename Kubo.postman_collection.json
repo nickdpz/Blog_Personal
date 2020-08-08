@@ -1,0 +1,379 @@
+{
+	"info": {
+		"_postman_id": "f88e6a49-dbca-45b2-bec5-0885c3b95af6",
+		"name": "Kubo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Tool\",\r\n    \"price\": 20000,\r\n    \"cover\": \"http://dummyimage.com/800x600.png/5472FF/ffffff\",\r\n    \"shortDescription\": \"Vestibulum ac est lacinia nisi venenatis tristique\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/product/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"product",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Product",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"In the Dark\",\r\n   \"price\": 2009,\r\n   \"cover\": \"http://dummyimage.com/800x600.png/99118E/ffffff\",\r\n    \"shortDescription\": \"Vestibulum ac est lacinia nisi venenatis tristique\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/product/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "229"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e5-nouFVycxXN7uh6J3iJ0oBkuK6WM\""
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "connect.sid=s%3AqZ-YWrbDOvsyM1q7G4qzS8SGtNT0k9SB.pX20hxv%2BBwjdDu7UN6n0vzrTp2sv4zW9D47ffNRBD3I; Path=/; Expires=Fri, 31 Jul 2020 20:04:10 GMT; HttpOnly"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 31 Jul 2020 18:04:10 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"\",\n    \"message\": {\n        \"_id\": \"5f245d1983e5c71508fa78de\",\n        \"cover\": \"http://dummyimage.com/800x600.png/99118E/ffffff\",\n        \"name\": \"In the Dark\",\n        \"shortDescription\": \"Vestibulum ac est lacinia nisi venenatis tristique\",\n        \"price\": 2009,\n        \"__v\": 0\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/product/5f245d1983e5c71508fa78de",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"product",
+						"5f245d1983e5c71508fa78de"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Product",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/product/5f245d1983e5c71508fa78de",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"product",
+								"5f245d1983e5c71508fa78de"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "229"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"e5-nouFVycxXN7uh6J3iJ0oBkuK6WM\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 31 Jul 2020 18:05:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"\",\n    \"message\": {\n        \"_id\": \"5f245d1983e5c71508fa78de\",\n        \"cover\": \"http://dummyimage.com/800x600.png/99118E/ffffff\",\n        \"name\": \"In the Dark\",\n        \"shortDescription\": \"Vestibulum ac est lacinia nisi venenatis tristique\",\n        \"price\": 2009,\n        \"__v\": 0\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Register Buy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"product\":[\"5f245d1983e5c71508fa78de\",\"5f245e4f81a2513dc08e6432\"],\r\n    \"productCount\":[1,2],\r\n    \"name\":\"Nicolas\",\r\n    \"phone\":303212121,\r\n    \"email\":\"ndpastran@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/buy/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"buy",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Register Buy",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product\":[\"5f245d1983e5c71508fa78de\",\"5f245e4f81a2513dc08e6432\"],\r\n    \"productCount\":[1,2],\r\n    \"name\":\"Paco\",\r\n    \"phone\":303212121,\r\n    \"email\":\"ndpastran@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/buy/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"buy",
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"31-KH1f0rGiJK7MuJT7LCSQfSaXFec\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 31 Jul 2020 18:57:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"\",\n    \"message\": \"5f24697fc5efd61eb0ed4475\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Buys",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/buy/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"buy",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Buys",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/buy/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"buy",
+								""
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "5f2464fa59114b1668d7b464",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "352"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"160-CFYws8NTSSBQg7ZruPWOOIMTk9E\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 31 Jul 2020 18:57:11 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"\",\n    \"message\": [\n        {\n            \"product\": [\n                \"5f245d1983e5c71508fa78de\",\n                \"5f245e4f81a2513dc08e6432\"\n            ],\n            \"productCount\": [\n                1,\n                2\n            ],\n            \"_id\": \"5f246976c5efd61eb0ed4474\",\n            \"user\": \"5f246976c5efd61eb0ed4473\",\n            \"__v\": 0\n        },\n        {\n            \"product\": [\n                \"5f245d1983e5c71508fa78de\",\n                \"5f245e4f81a2513dc08e6432\"\n            ],\n            \"productCount\": [\n                1,\n                2\n            ],\n            \"_id\": \"5f24697fc5efd61eb0ed4476\",\n            \"user\": \"5f24697fc5efd61eb0ed4475\",\n            \"__v\": 0\n        }\n    ]\n}"
+				},
+				{
+					"name": "Get Buys for a User",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/buy/?user=5f24697fc5efd61eb0ed4475",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"buy",
+								""
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "5f24697fc5efd61eb0ed4475"
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "188"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"bc-5BNNE2+lJufly5QhnR4AmPCntls\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 31 Jul 2020 18:58:04 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"\",\n    \"message\": [\n        {\n            \"product\": [\n                \"5f245d1983e5c71508fa78de\",\n                \"5f245e4f81a2513dc08e6432\"\n            ],\n            \"productCount\": [\n                1,\n                2\n            ],\n            \"_id\": \"5f24697fc5efd61eb0ed4476\",\n            \"user\": \"5f24697fc5efd61eb0ed4475\",\n            \"__v\": 0\n        }\n    ]\n}"
+				}
+			]
+		}
+	],
+	"protocolProfileBehavior": {}
+}
