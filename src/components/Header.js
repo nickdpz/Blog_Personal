@@ -17,7 +17,7 @@ const Header = (props) => {
     document.cookie = 'id=';
     document.cookie = 'token=';
     props.logoutRequest({});
-    props.history.push('/login');
+    window.location.href = '/login';
   };
   return (
     <header className='isGreen header'>
