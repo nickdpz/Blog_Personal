@@ -8,9 +8,9 @@ import { Provider } from 'react-redux';
 import { createStore, compose, applyMiddleware } from 'redux';
 import reducer from './reducers';
 import thunk from 'redux-thunk';
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducer, initialState, composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(reducer, initialState, compose(applyMiddleware(thunk)));
 const preloadedState = store.getState();
+console.log("index");
 console.log(preloadedState);
 
 ReactDOM.render(

@@ -26,13 +26,12 @@ export const setError = (payload) => ({
 	payload,
 });
 
-export const registerUser = (payload, redirectUrl) => {
+export const registerUser = (payload) => {
 	return async (dispatch) => {
 		try {
 			const data = await api.createUser(payload);
 			if (!data.error) {
 				await dispatch(registerRequest(data));
-				window.location.href = redirectUrl;
 			} else {
 				dispatch(setError({ error: "Bad Request" }));
 			}
@@ -42,8 +41,9 @@ export const registerUser = (payload, redirectUrl) => {
 	}
 };
 
-export const loginUser = (payload, redirectUrl) => {
+export const loginUser = (payload) => {
 	return async (dispatch) => {
+		console.log("object");
 		try {
 			const data = await api.singIn(payload);
 			if (!data.error) {
@@ -52,7 +52,6 @@ export const loginUser = (payload, redirectUrl) => {
 				document.cookie = `name=${data.user.name}`;
 				document.cookie = `id=${data.user.id}`;
 				await dispatch(loginRequest(data.user));
-				window.location.href = redirectUrl;
 			} else {
 				dispatch(setError({ error: "Bad Request" }));
 			}

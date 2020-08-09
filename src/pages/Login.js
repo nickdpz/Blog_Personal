@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { loginUser } from '../actions';
 import { Link } from 'react-router-dom';
 import './styles/Login.css';
+import Header from '../components/Header';
 
 const Login = (props) => {
     const [form, setValues] = useState({
@@ -19,11 +20,13 @@ const Login = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        props.loginUser(form, '/');
+        props.loginUser(form);
+        props.history.push('/');
     };
 
     return (
         <>
+            <Header />
             <section className='login'>
                 <section className='login__container'>
                     <h2>Inicia sesión</h2>
