@@ -10,7 +10,6 @@ import reducer from './reducers';
 import thunk from 'redux-thunk';
 const store = createStore(reducer, initialState, compose(applyMiddleware(thunk)));
 const preloadedState = store.getState();
-console.log("index");
 console.log(preloadedState);
 
 ReactDOM.render(

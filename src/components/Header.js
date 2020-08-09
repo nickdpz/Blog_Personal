@@ -9,8 +9,6 @@ import logo from '../images/logo-konecta-azul-1.svg';
 
 const Header = (props) => {
   const { user } = props;
-  console.log("header");
-  console.log(user);
   const hasUser = Object.keys(user).length > 0;
 
   const handleLogout = () => {
@@ -19,7 +17,7 @@ const Header = (props) => {
     document.cookie = 'id=';
     document.cookie = 'token=';
     props.logoutRequest({});
-    this.props.history.push('/login');
+    props.history.push('/login');
   };
   return (
     <header className='isGreen header'>

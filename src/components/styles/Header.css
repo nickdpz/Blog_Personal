@@ -1,6 +1,6 @@
 .header {
     align-items: center;
-    color: white;
+    color: #005f89;
     display: flex;
     height: 100px;
     justify-content: space-between;
@@ -9,7 +9,7 @@
 }
 
 .isGreen {
-    background-color: #005f89;
+    background-color: white;
 }
 
 .header__img {
@@ -40,7 +40,7 @@
 }
 
 .header__menu li a {
-    color: white;
+    color: #005f89;
     text-decoration: none;
 }
 

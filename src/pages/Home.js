@@ -89,11 +89,14 @@ class Home extends Component {
         return (
             <>
                 <Header />
-                <h1>Hola Estamos encantados de tenerte</h1>
-                <Link to='/post'>
-                    Crea Un Nuevo Post
+                <div className="container mt-5">
+                    <h1>Hola Estamos encantados de tenerte</h1>
+                    <Link to='/post'>
+                        Crea Un Nuevo Post
                 </Link>
-                <Posts post={this.state.post} />
+                    <Posts post={this.state.post} />
+
+                </div>
                 <Footer />
             </>
         );

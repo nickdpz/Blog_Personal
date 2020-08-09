@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import './styles/CreatePost.css';
 import api from '../utils/api';
 import sweetAlert from 'sweetalert2';
@@ -124,7 +123,7 @@ class CreatePost extends Component {
                     </div>
                     <div className="form-group">
                         <label>Categoria</label>
-                        <select id="category" name="category" class="form-control">
+                        <select id="category" name="category" className="form-control">
                             <option value="" disabled selected hidden>Categoria</option>
                             <option value="1">Viajes</option>
                             <option value="1">Comida</option>
