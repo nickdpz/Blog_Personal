@@ -18,18 +18,24 @@ if (process.env.NODE_ENV === "development") {//session en base de datos
     //
 }
 database();
-
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header("Access-Control-Allow-Headers", "X-Custom-Header, X-ACCESS_TOKEN, Access-Control-Allow-Origin, Authorization, Origin, x-requested-with, Content-Type, Content-Range, Content-Disposition, Content-Description");
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    next();
+});
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(session({
-    cookie: { maxAge: TWO_HOURS_IN_SEC*1000 },
+    cookie: { maxAge: TWO_HOURS_IN_SEC * 1000 },
     store: store,
     secret: process.env.AUTH_COOKIE_SECRET,
     resave: true,
     saveUninitialized: true,
 }));
+
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');

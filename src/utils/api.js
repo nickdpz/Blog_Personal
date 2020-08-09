@@ -4,7 +4,7 @@ const base64 = require('base-64');
 async function callApi(endpoint, options = {}) {
   options.headers = {
     ...options.headers,
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json; charset=UTF-8',
   };
   const url = BASE_URL + endpoint;
   const response = await fetch(url, options);
