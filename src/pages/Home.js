@@ -10,8 +10,8 @@ class ListPosts extends React.Component {
     render() {
         return (
             <div className="list-group list-group-horizontal">
-                <span className="list-group-item SalesListItem">{this.props.post.title}</span>
-                <span className="list-group-item SalesListItem">{this.props.post.shortDescription}</span>
+                <span className="list-group-item list-item-title">{this.props.post.title}</span>
+                <span className="list-group-item list-item-description">{this.props.post.shortDescription}</span>
             </div>
         );
     }
@@ -32,8 +32,8 @@ function Posts(props) {
             <ul className="list-unstyled">
                 <li key='0'>
                     <div className="list-group list-group-horizontal">
-                        <span className="list-group-item SalesListItem"><strong>Titulo</strong></span>
-                        <span className="list-group-item SalesListItem"><strong>Descripcion</strong></span>
+                        <span className="list-group-item list-item-title"><strong>Titulo</strong></span>
+                        <span className="list-group-item list-item-description"><strong>Descripcion</strong></span>
                     </div>
                 </li>
                 {posts.map(post => {
