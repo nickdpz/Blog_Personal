@@ -3,6 +3,9 @@ import './styles/CreatePost.css';
 import api from '../utils/api';
 import sweetAlert from 'sweetalert2';
 import PageLoading from '../components/PageLoading';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import { connect } from 'react-redux';
 
 class CreatePost extends Component {
     state = {
@@ -96,76 +99,95 @@ class CreatePost extends Component {
         if (this.state.loading) {
             return <PageLoading />;
         }
-
+        const categories = this.props.categories;
         return (
-            <div className="container mt-5">
-                <form onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <label>Title</label>
-                        <input
-                            onChange={this.handleChange}
-                            className="form-control"
-                            type="text"
-                            name="title"
-                            value={this.state.title}
-                        />
-                    </div>
+            <>
+                <Header />
+                <div className="container mt-5">
+                    <form onSubmit={this.handleSubmit}>
+                        <div className="form-group">
+                            <label>Title</label>
+                            <input
+                                onChange={this.handleChange}
+                                className="form-control"
+                                type="text"
+                                name="title"
+                                value={this.state.title}
+                            />
+                        </div>
 
-                    <div className="form-group">
-                        <label>Slug</label>
-                        <input
-                            onChange={this.handleChange}
-                            className="form-control"
-                            type="text"
-                            name="slug"
-                            value={this.state.slug}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Categoria</label>
-                        <select id="category" name="category" className="form-control">
-                            <option value="" disabled selected hidden>Categoria</option>
-                            <option value="1">Viajes</option>
-                            <option value="1">Comida</option>
+                        <div className="form-group">
+                            <label>Slug</label>
+                            <input
+                                onChange={this.handleChange}
+                                className="form-control"
+                                type="text"
+                                name="slug"
+                                value={this.state.slug}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Categoria</label>
+                            <select id="category" name="category" className="form-control">
+                                <option key="0" value="0" disabled selected hidden>Categoria</option>
+                                {categories.length > 0 && (
+                                    <>
+                                        {categories.map((item) => (
+                                            <option
+                                                key={item._id}
+                                                value={item._id}
+                                            >
+                                                {item.name}</option>
+                                        ))}
+                                    </>
+                                )}
 
-                        </select>
-                    </div>
-                    <div className="form-group">
-                        <label>Descripcion Corta</label>
-                        <input
-                            onChange={this.handleChange}
-                            className="form-control"
-                            type="text"
-                            name="shortDescription"
-                            value={this.state.shortDescription}
-                        />
-                    </div>
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label>Descripcion Corta</label>
+                            <input
+                                onChange={this.handleChange}
+                                className="form-control"
+                                type="text"
+                                name="shortDescription"
+                                value={this.state.shortDescription}
+                            />
+                        </div>
 
-                    <div className="form-group">
-                        <label>Descirptcion Larga</label><br />
-                        <textarea
-                            onChange={this.handleChange}
-                            name="description"
-                            className="form-control"
-                            rows="10"
-                            cols="80"
-                            placeholder="Escribe tu post"
-                            value={this.state.description}
-                        />
-                    </div>
+                        <div className="form-group">
+                            <label>Descirptcion Larga</label><br />
+                            <textarea
+                                onChange={this.handleChange}
+                                name="description"
+                                className="form-control"
+                                rows="10"
+                                cols="80"
+                                placeholder="Escribe tu post"
+                                value={this.state.description}
+                            />
+                        </div>
 
-                    <button type='submit' className="btn btn-primary">
-                        Guardar Post</button>
+                        <button type='submit' className="btn btn-primary">
+                            Guardar Post</button>
 
-                    {this.props.error && (
-                        <p className="text-danger">{this.props.error.message}</p>
-                    )}
-                </form>
-            </div>
+                        {this.props.error && (
+                            <p className="text-danger">{this.props.error.message}</p>
+                        )}
+                    </form>
+                </div>
+                <Footer />
+            </>
 
         );
     }
 }
 
 
-export default CreatePost;
+const mapStateToProps = (state) => {
+    return {
+        categories: state.categories
+    };
+};
+
+export default connect(mapStateToProps, null)(CreatePost);
