@@ -5,7 +5,7 @@ import gravatar from '../utils/gravatar';
 import { logoutRequest } from '../actions';
 import './styles/Header.css';
 import userIcon from '../images/user-icon.png';
-import logo from '../images/logo.jpg';
+import logo from '../images/logo-konecta-azul-1.svg';
 
 const Header = (props) => {
   const { user } = props;

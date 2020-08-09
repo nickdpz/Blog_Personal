@@ -23,6 +23,21 @@ router.post('/',
             })
     })
 
+router.options('/',
+    passport.authenticate('jwt', { session: false }),
+    usersValidationHandler('get:post'),
+    async (req, res) => {
+        const { user } = req.query;
+        controller.getPost(user)
+            .then((info) => {
+                response.success(req, res, info, 201)
+            })
+            .catch((e) => {
+                response.error(req, res, 'Información Invalida', 300, e);
+            })
+    })
+
+
 router.get('/',
     passport.authenticate('jwt', { session: false }),
     usersValidationHandler('get:post'),

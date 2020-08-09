@@ -47,12 +47,12 @@ class CreatePost extends Component {
 
     alertSuccess() {
         sweetAlert.fire({
-            title: 'Update Success !',
+            title: 'Creación Exitosa !',
             text: 'We wait for you here 😊',
             icon: 'success'
         }).then((result) => {
             if (result.value || !result.value) {
-                this.props.history.push('/badges');
+                this.props.history.push('/');
             }
         });
     }
@@ -60,10 +60,15 @@ class CreatePost extends Component {
 
     handleChange = e => {
         let form = this.state.form;
+        form = {
+            ...this.state.form,
+            [e.target.name]: e.target.value,
+        }
         this.setState({
             form: form
         });
     }
+
 
     handleSubmit = async e => {
         e.preventDefault();
@@ -75,8 +80,9 @@ class CreatePost extends Component {
         } else {
             this.setState({ loading: true, error: null });
             const userId = this.getCookie('id');
+            const token = this.getCookie('token');
             try {
-                await api.createPost({ ...this.state.form, user: userId });
+                await api.createPost({ ...this.state.form, user: userId }, token);
                 this.setState({ loading: false });
                 this.alertSuccess()
             } catch (error) {
@@ -102,6 +108,7 @@ class CreatePost extends Component {
                             className="form-control"
                             type="text"
                             name="title"
+                            value={this.state.title}
                         />
                     </div>
 
@@ -112,9 +119,18 @@ class CreatePost extends Component {
                             className="form-control"
                             type="text"
                             name="slug"
+                            value={this.state.slug}
                         />
                     </div>
+                    <div className="form-group">
+                        <label>Categoria</label>
+                        <select id="category" name="category" class="form-control">
+                            <option value="" disabled selected hidden>Categoria</option>
+                            <option value="1">Viajes</option>
+                            <option value="1">Comida</option>
 
+                        </select>
+                    </div>
                     <div className="form-group">
                         <label>Descripcion Corta</label>
                         <input
@@ -122,12 +138,21 @@ class CreatePost extends Component {
                             className="form-control"
                             type="text"
                             name="shortDescription"
+                            value={this.state.shortDescription}
                         />
                     </div>
 
                     <div className="form-group">
                         <label>Descirptcion Larga</label><br />
-                        <textarea name="description" className="form-control" rows="10" cols="80">Escribe tu post</textarea>
+                        <textarea
+                            onChange={this.handleChange}
+                            name="description"
+                            className="form-control"
+                            rows="10"
+                            cols="80"
+                            placeholder="Escribe tu post"
+                            value={this.state.description}
+                        />
                     </div>
 
                     <button type='submit' className="btn btn-primary">

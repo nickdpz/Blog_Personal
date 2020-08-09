@@ -25,6 +25,19 @@ const api = {
       })
     })
   },
+  createPost(data, token) {
+    return callApi('/post/', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+  },
+  getPost(user, token) {
+    return callApi(`/post/?user=${user}`, {
+      method: 'GET',
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+  },
   singIn(data) {
     const { email, password } = data;
     const username = email;
