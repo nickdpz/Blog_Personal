@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer'
 import { Link } from 'react-router-dom';
 import api from '../utils/api'
+import { connect } from 'react-redux';
 
 class ListPosts extends React.Component {
     render() {
@@ -50,9 +51,6 @@ function Posts(props) {
 
 
 class Home extends Component {
-    state = {
-        post: [{}],
-    }
 
     getCookie = (cname) => {
         const name = `${cname}=`;
@@ -82,7 +80,7 @@ class Home extends Component {
     };
 
     componentDidMount() {
-        this.fetchData();
+        //this.fetchData();
     }
 
     render() {
@@ -90,12 +88,12 @@ class Home extends Component {
             <>
                 <Header />
                 <div className="container mt-5">
-                    <h1>Hola Estamos encantados de tenerte</h1>
+                    <h1>Hola {this.props.user.name}<br />
+                    Estamos encantados de tenerte</h1>
                     <Link to='/post'>
                         Crea Un Nuevo Post
                 </Link>
-                    <Posts post={this.state.post} />
-
+                    <Posts post={this.props.post} />
                 </div>
                 <Footer />
             </>
@@ -104,4 +102,11 @@ class Home extends Component {
 
 };
 
-export default Home;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+        post: state.post
+    };
+};
+
+export default connect(mapStateToProps, null)(Home);
