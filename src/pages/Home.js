@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
 import './styles/Home.css';
 import Header from '../components/Header';
-import Footer from '../components/Filter'
-import api from '../api'
+import Footer from '../components/Footer'
+import { Link } from 'react-router-dom';
+import api from '../utils/api'
 
 class Home extends Component {
     state = {
-        count: 0,
+        post: {},
+        loading:false,
     }
     fetchData = async () => {
         this.setState({ loading: true, error: null });
         try {
-            const data = await api.getProducts(this.props.match.params.productId);
+            const data = await api.getPost();
             console.log(data);
             if (data.length !== 0) {
-                this.setState({ loading: false, products: data.message })
+                this.setState({ loading: false, post: data.message })
             } else {
-                this.setState({ loading: false, error: 'NO Existe el Producto' });
+                this.setState({ loading: false, error: 'No hay Post' });
             }
         } catch (error) {
             this.setState({ loading: false, error: error });
@@ -30,7 +32,11 @@ class Home extends Component {
         return (
             <>
                 <Header />
-                <h1>Hola</h1>
+                <h1>Hola Estamos encantados de tenerte</h1>
+                <Link to='/post'>
+                    Crea Un Nuevo Post
+                </Link>
+                <Footer />
             </>
         );
     }
