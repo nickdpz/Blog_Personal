@@ -6,6 +6,7 @@ import PageLoading from '../components/PageLoading';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { connect } from 'react-redux';
+import { addCategory } from '../actions'
 
 class CreatePost extends Component {
     state = {
@@ -59,6 +60,21 @@ class CreatePost extends Component {
         });
     }
 
+    getCookie = (cname) => {
+        const name = `${cname}=`;
+        const ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) === 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return '';
+    };
+
 
     handleChange = e => {
         let form = this.state.form;
@@ -94,6 +110,19 @@ class CreatePost extends Component {
         }
     };
 
+    fetchData = async () => {
+        try {
+            const token = this.getCookie('token');
+            const data = await api.getCategories(token);
+            this.props.addCategory(data.message);
+        } catch (error) {
+            this.setState({ post: [] });
+        }
+    };
+
+    componentDidMount() {
+        this.fetchData();
+    }
 
     render() {
         if (this.state.loading) {
@@ -190,4 +219,8 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, null)(CreatePost);
+const mapDispatchToProps = {
+    addCategory,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePost);

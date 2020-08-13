@@ -6,8 +6,13 @@ export const registerRequest = (payload) => ({
 });
 
 
-export const deleteFavorite = (payload) => ({
-	type: 'DELETE_FAVORITE',
+export const addPost = (payload) => ({
+	type: 'ADD_POST',
+	payload,
+});
+
+export const addCategory = (payload) => ({
+	type: 'ADD_CATEGORY',
 	payload,
 });
 

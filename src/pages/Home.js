@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import { Link } from 'react-router-dom';
 import api from '../utils/api'
 import { connect } from 'react-redux';
+import { addPost } from '../actions';
 
 class ListPosts extends React.Component {
     render() {
@@ -73,14 +74,14 @@ class Home extends Component {
             const userId = this.getCookie('id');
             const token = this.getCookie('token');
             const data = await api.getPost(userId, token);
-            this.setState({ post: data });
+            this.props.addPost(data.message);
         } catch (error) {
             this.setState({ post: [] });
         }
     };
 
     componentDidMount() {
-        //this.fetchData();
+        this.fetchData();
     }
 
     render() {
@@ -109,4 +110,8 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, null)(Home);
+const mapDispatchToProps = {
+    addPost,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

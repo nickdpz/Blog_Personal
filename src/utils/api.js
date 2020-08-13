@@ -32,6 +32,12 @@ const api = {
       headers: { 'Authorization': `Bearer ${token}` }
     })
   },
+  getCategories(token) {
+    return callApi('/category/', {
+      method: 'GET',
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+  },
   getPost(user, token) {
     return callApi(`/post/?user=${user}`, {
       method: 'GET',

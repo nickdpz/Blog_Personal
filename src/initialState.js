@@ -1,10 +1,6 @@
 const initialState = {
     'user': {},
-    'categories': [{
-        "id": "5f2f021cf7b78c34a86e9dcb",
-        "name": "Tool",
-        "shortDescription": "Vestibulum ac est lacinia nisi venenatis tristique",
-    }],
+    'categories': [],
     'post': [{
         "category": [
             "5f2f021cf7b78c34a86e9dcb"

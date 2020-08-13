@@ -10,10 +10,15 @@ const reducer = (state, action) => {
 				...state,
 				user: action.payload,
 			};
-		case 'REGISTER_REQUEST':
+		case 'ADD_POST':
 			return {
 				...state,
-				user: action.payload,
+				post: action.payload,
+			};
+		case 'ADD_CATEGORY':
+			return {
+				...state,
+				categories: action.payload,
 			};
 		default:
 			return state;
