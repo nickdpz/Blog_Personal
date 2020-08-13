@@ -16,11 +16,3 @@
   grid-column: centerColumn/endColumn;
   grid-row: startRow/endRow;
 }
-
-.list-item-title {
-  width: 20%;
-}
-
-.list-item-description {
-  width: 80%;
-}

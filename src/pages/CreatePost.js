@@ -7,6 +7,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { connect } from 'react-redux';
 import { addCategory } from '../actions'
+import getCookie from '../utils/getCookie'
 
 class CreatePost extends Component {
     state = {
@@ -14,22 +15,6 @@ class CreatePost extends Component {
         error: false,
         form: {}
     }
-
-    getCookie = (cname) => {
-        const name = `${cname}=`;
-        const ca = document.cookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) === ' ') {
-                c = c.substring(1);
-            }
-            if (c.indexOf(name) === 0) {
-                return c.substring(name.length, c.length);
-            }
-        }
-        return '';
-    };
-
 
     alertError = () => {
         sweetAlert.fire({
@@ -60,22 +45,6 @@ class CreatePost extends Component {
         });
     }
 
-    getCookie = (cname) => {
-        const name = `${cname}=`;
-        const ca = document.cookie.split(';');
-        for (let i = 0; i < ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) === ' ') {
-                c = c.substring(1);
-            }
-            if (c.indexOf(name) === 0) {
-                return c.substring(name.length, c.length);
-            }
-        }
-        return '';
-    };
-
-
     handleChange = e => {
         let form = this.state.form;
         form = {
@@ -97,8 +66,8 @@ class CreatePost extends Component {
             this.alertData(valuesFilter)
         } else {
             this.setState({ loading: true, error: null });
-            const userId = this.getCookie('id');
-            const token = this.getCookie('token');
+            const userId = getCookie('id');
+            const token = getCookie('token');
             try {
                 await api.createPost({ ...this.state.form, user: userId }, token);
                 this.setState({ loading: false });
