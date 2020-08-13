@@ -20,7 +20,8 @@ const App = (props) => {
         <Route exact path='/login' component={Login} />
         <Route component={NotFound} />
       </Switch>
-    </BrowserRouter>)
+    </BrowserRouter>
+  )
 };
 const mapStateToProps = (state) => {
   return {

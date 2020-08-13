@@ -9,12 +9,10 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import reducer from './reducers';
 import thunk from 'redux-thunk';
 const store = createStore(reducer, initialState, compose(applyMiddleware(thunk)));
-const preloadedState = store.getState();
-console.log(preloadedState);
 
 ReactDOM.render(
     <Provider store={store}>
-         <App isLogged={(preloadedState.user.id)} />
+        <App />
     </Provider>,
     document.getElementById('app')
 );

@@ -4,12 +4,17 @@ import { loginUser } from '../actions';
 import { Link } from 'react-router-dom';
 import './styles/Login.css';
 import Header from '../components/Header';
+import PageLoading from '../components/PageLoading';
 
 const Login = (props) => {
     const [form, setValues] = useState({
         email: '',
-        password: '',
+        password: ''
     });
+    const [state, setState] = useState({
+        loading: false,
+        error: null,
+    })
 
     const handleInput = (event) => {
         setValues({
@@ -18,12 +23,17 @@ const Login = (props) => {
         });
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
+        setState({ loading: true, error: null });
         event.preventDefault();
-        props.loginUser(form);
+        await props.loginUser(form);
+        setState({ loading: false, error: null });
         props.history.push('/');
     };
 
+    if (state.loading) {
+        return <PageLoading />;
+    }
     return (
         <>
             <Header />

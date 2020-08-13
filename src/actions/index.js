@@ -48,7 +48,6 @@ export const registerUser = (payload) => {
 
 export const loginUser = (payload) => {
 	return async (dispatch) => {
-		console.log("object");
 		try {
 			const data = await api.singIn(payload);
 			if (!data.error) {
